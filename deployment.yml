@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: java-webapp
+  labels:
+    app: java-webapp
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: java-webapp
+    spec:
+      containers:
+      - image: 127.0.0.1:30400/java-webapp:version
+        name: java-webapp
+        ports:
+        - containerPort: 8006
+        resources: {}
+      restartPolicy: Always
+status: {}
