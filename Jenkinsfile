@@ -1,11 +1,6 @@
 node {
   stage('Maven build') {
     checkout scm
-    sh "git rev-parse --short HEAD > commit-id"
-    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appName = "javawebapp:"
-    registryHost = "127.0.0.1:30400/"
-    imageName = "${registryHost}${appname}${tag}"
                 
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn --version"
