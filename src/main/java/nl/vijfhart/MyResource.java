@@ -6,7 +6,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/java-webapp")
-public class MyResource {
+public class MyResource extends extends Application {
+    
+    @Override
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> s = new HashSet<Class<?>>();
+        s.add(MyResource.class);
+        return s;
+    }
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
