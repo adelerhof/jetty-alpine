@@ -8,7 +8,7 @@ import java.util.*;
 import javax.ws.rs.*;
 
 @Path("/java-webapp")
-public class MyResource extends extends Application {
+public class MyResource extends Application {
     
     @Override
     public Set<Class<?>> getClasses() {
