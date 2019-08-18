@@ -4,7 +4,7 @@ import java.util.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-@Path("/java-webapp")
+@Path("java-webapp")
 public class MyResource {
 
     /**
