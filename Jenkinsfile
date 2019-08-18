@@ -4,17 +4,8 @@ node {
                 
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn --version"
-      
-      
-      try {
-        stage('Test') {
-            sh 'mvn test'
-        }
-      } 
-      finally {
-        junit 'reports/*.xml'
-      }
       sh "mvn clean package"
+      cobertura coberturaReportFile: 'coverage.xml'
     }
   }
   
