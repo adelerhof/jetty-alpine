@@ -12,7 +12,7 @@ node {
     def scannerHome = tool 'scanner';
    
     withSonarQubeEnv('SonarQube') {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=javawebapp -Dsonar.sources=. -Dsonar.java.binaries=**/target/classes"
+      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=javawebapp -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
     }
   }
   /*
