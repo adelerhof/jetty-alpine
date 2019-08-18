@@ -5,9 +5,18 @@ node {
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn --version"
       sh "mvn clean package"
-      sh "mvn cobertura:cobertura"
+      
+      try {
+        stage('Test') {
+            sh 'mvn test'
+        }
+      } 
+      finally {
+        junit 'reports/**/*.xml'
+      }
     }
   }
+  
   
   stage('SonarQube') {
     def scannerHome = tool 'scanner';
