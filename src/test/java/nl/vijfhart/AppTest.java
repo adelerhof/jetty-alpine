@@ -2,7 +2,7 @@ package nl.vijfhart;
 
 import org.junit.*;
 
-class Test {
+class AppTest {
   @Test
   public void testHello(){
     Assert.assertEquals("Hello Java", MyResource.hello());
