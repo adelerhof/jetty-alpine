@@ -6,6 +6,7 @@ node {
       sh "mvn --version"
       sh "mvn package"
       junit 'target/surefire-reports/*.xml'
+      cobertura coberturaReportFile: 'coverage.xml'
     }
   }
   
