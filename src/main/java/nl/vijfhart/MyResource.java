@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.*;
 import javax.ws.rs.core.*;
 
-@Path("/java-webapp")
+@ApplicationPath("/java-webapp")
 public class MyResource extends Application {
     
     @Override
