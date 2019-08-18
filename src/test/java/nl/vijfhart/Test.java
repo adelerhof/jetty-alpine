@@ -1,3 +1,5 @@
+package nl.vijfhart;
+
 import org.junit.*;
 
 class Test {
