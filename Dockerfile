@@ -1,4 +1,5 @@
-FROM tomcat:8-jre8
+#FROM tomcat:8-jre8
+FROM davidcaste/alpine-tomcat:tomcat8
 
 # remove the default tomcat application
 RUN rm -rf /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT.war
