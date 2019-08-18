@@ -1,4 +1,4 @@
-package nl.vijfhart;
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
