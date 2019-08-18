@@ -6,8 +6,9 @@ metadata:
     app: java-webapp
 spec:
   ports:
-    - port: 80
-      targetPort: 5000
+  -protocol:TCP
+    port: 8080
+    name:http
   selector:
     app: java-webapp
     tier: java-webapp
