@@ -5,8 +5,6 @@ metadata:
   labels:
     app: java-webapp
 spec:
-strategy:
-    type: Recreate
   ports:
     - port: 80
       targetPort: 5000
