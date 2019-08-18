@@ -12,7 +12,7 @@ node {
         }
       } 
       finally {
-        junit 'reports/**/*.xml'
+        junit 'reports/*.xml'
       }
       sh "mvn clean package"
     }
