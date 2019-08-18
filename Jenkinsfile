@@ -17,14 +17,16 @@ node {
   }
 
   stage ('Docker Build') {
-    sh "docker build -t java-webapp ."
+    sh "docker build -t java-webapp:1 ."
   }
+  
   stage ('Push') {
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appname = "java-webapp:"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appname}${tag}"
+    sh "docker tag java-webapp:1 ${imageName}"
     sh "docker push ${imageName}"
   }
   
