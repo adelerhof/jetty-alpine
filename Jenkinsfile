@@ -19,13 +19,18 @@ node {
   stage ('Docker Build') {
     sh "docker build -t java-webapp ."
   }
-  
-  /*
   stage ('Push') {
+    sh "git rev-parse --short HEAD > commit-id"
+    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+    appname = "java-webapp:"
+    registryHost = "127.0.0.1:30400/"
+    imageName = "${registryHost}${appname}${tag}"
     sh "docker push ${imageName}"
   }
+  
   stage ('Deploy') {
-    sh "sed 's#127.0.0.1:30400/javawebapp:version#127.0.0.1:30400/javawebapp:'$tag'#' deployment.yml | kubectl apply -f -"
+    sh "git rev-parse --short HEAD > commit-id"
+    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+    sh "sed 's#127.0.0.1:30400/java-webapp:version#127.0.0.1:30400/java-webapp:'$tag'#' deployment.yml | kubectl apply -f -"
   }
-  */
 }
