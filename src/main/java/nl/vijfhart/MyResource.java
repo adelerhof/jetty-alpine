@@ -4,15 +4,8 @@ import java.util.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-@ApplicationPath("/java-webapp")
-public class MyResource extends Application {
-    
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> s = new HashSet<Class<?>>();
-        s.add(MyResource.class);
-        return s;
-    }
+Path("/java-webapp")
+public class MyResource {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
