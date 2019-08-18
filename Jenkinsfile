@@ -15,11 +15,12 @@ node {
       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=javawebapp -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
     }
   }
-  /*
+
   stage ('Docker Build') {
-    sh "docker build -t ${imageName} ."
+    sh "docker build -t java-webapp ."
   }
   
+  /*
   stage ('Push') {
     sh "docker push ${imageName}"
   }
