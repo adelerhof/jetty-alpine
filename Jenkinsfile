@@ -5,7 +5,7 @@ node {
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn --version"
       sh "mvn clean package"
-      junit "reports/*.xml"
+      junit "**/test-reports/*.xml"
     }
   }
   
