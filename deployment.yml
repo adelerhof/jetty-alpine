@@ -6,7 +6,7 @@ metadata:
     app: java-webapp
 spec:
   ports:
-    -port: 8080
+    - port: 8080
   selector:
     app: java-webapp
     tier: java-webapp
@@ -32,5 +32,5 @@ spec:
       - image: 127.0.0.1:30400/java-webapp:version
         name: java-webapp
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: java-webapp
