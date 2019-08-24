@@ -5,6 +5,7 @@ node {
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn --version"
       sh "mvn package"
+      sh "mvn jacoco-check"
       junit 'target/surefire-reports/*.xml'
       cobertura coberturaReportFile: 'target/site/cobertura/coverage.xml'
     }
