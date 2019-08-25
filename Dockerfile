@@ -1,3 +1,3 @@
 FROM jetty:alpine
-COPY ./targetrest-java-jetty-1.0-SNAPSHOT.war /var/lib/jetty/webapps/rest-java-jetty.war
+COPY ./target/jetty-alpine-1.0-SNAPSHOT.war /var/lib/jetty/webapps/jetty-alpine.war
 EXPOSE 8080
