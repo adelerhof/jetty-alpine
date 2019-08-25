@@ -10,7 +10,7 @@ node {
     }
   }
   
-  
+  /*
   stage('SonarQube') {
     def scannerHome = tool 'scanner';
    
@@ -18,7 +18,7 @@ node {
       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=java-microservice-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
     }
   }
-
+*/
   stage ('Docker Build') {
     sh "docker build -t java-microservice-jetty:1 ."
   }
