@@ -1,36 +1,36 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rest-java-jetty
+  name: jetty-alpine
   labels:
-    app: rest-java-jetty
+    app: jetty-alpine
 spec:
   ports:
     - port: 8080
   selector:
-    app: rest-java-jetty
-    tier: rest-java-jetty
+    app: jetty-alpine
+    tier: jetty-alpine
   type: NodePort
 
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rest-java-jetty
+  name: jetty-alpine
   labels:
-    app: rest-java-jetty
+    app: jetty-alpine
 spec:
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: rest-java-jetty
-        tier: rest-java-jetty
+        app: jetty-alpine
+        tier: jetty-alpine
     spec:
       containers:
-      - image: 127.0.0.1:30400/rest-java-jetty:version
-        name: rest-java-jetty
+      - image: 127.0.0.1:30400/jetty-alpine:version
+        name: jetty-alpine
         ports:
         - containerPort: 8080
-          name: rest-java-jetty
+          name: jetty-alpine
