@@ -1,36 +1,36 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-webapp
+  name: java-microservice-jetty
   labels:
-    app: java-webapp
+    app: java-microservice-jetty
 spec:
   ports:
     - port: 8080
   selector:
-    app: java-webapp
-    tier: java-webapp
+    app: java-microservice-jetty
+    tier: java-microservice-jetty
   type: NodePort
 
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: java-webapp
+  name: java-microservice-jetty
   labels:
-    app: java-webapp
+    app: java-microservice-jetty
 spec:
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: java-webapp
-        tier: java-webapp
+        app: java-microservice-jetty
+        tier: java-microservice-jetty
     spec:
       containers:
-      - image: 127.0.0.1:30400/java-webapp:version
-        name: java-webapp
+      - image: 127.0.0.1:30400/java-microservice-jetty:version
+        name: java-microservice-jetty
         ports:
         - containerPort: 8080
-          name: java-webapp
+          name: java-microservice-jetty
