@@ -15,27 +15,27 @@ node {
     def scannerHome = tool 'scanner';
    
     withSonarQubeEnv('SonarQube') {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=javawebapp -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
+      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=java-microservice-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
     }
   }
 
   stage ('Docker Build') {
-    sh "docker build -t java-webapp:1 ."
+    sh "docker build -t java-microservice-jetty:1 ."
   }
   
   stage ('Push') {
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appname = "java-webapp:"
+    appname = "java-microservice-jetty:"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appname}${tag}"
-    sh "docker tag java-webapp:1 ${imageName}"
+    sh "docker tag java-microservice-jetty:1 ${imageName}"
     sh "docker push ${imageName}"
   }
   
   stage ('Deploy') {
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    sh "sed 's#127.0.0.1:30400/java-webapp:version#127.0.0.1:30400/java-webapp:'$tag'#' deployment.yml | kubectl apply -f -"
+    sh "sed 's#127.0.0.1:30400/java-microservice-jetty:version#127.0.0.1:30400/java-microservice-jetty:'$tag'#' deployment.yml | kubectl apply -f -"
   }
 }
