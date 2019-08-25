@@ -20,22 +20,22 @@ node {
   }
 */
   stage ('Docker Build') {
-    sh "docker build -t java-microservice-jetty:1 ."
+    sh "docker build -t jetty-alpine:1 ."
   }
   
   stage ('Push') {
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appname = "rest-java-jetty:"
+    appname = "jetty-alpine:"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appname}${tag}"
-    sh "docker tag rest-java-jetty:1 ${imageName}"
+    sh "docker tag jetty-alpine:1 ${imageName}"
     sh "docker push ${imageName}"
   }
   
   stage ('Deploy') {
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    sh "sed 's#127.0.0.1:30400/rest-java-jetty:version#127.0.0.1:30400/rest-java-jetty:'$tag'#' deployment.yml | kubectl apply -f -"
+    sh "sed 's#127.0.0.1:30400/jetty-alpine:version#127.0.0.1:30400/jetty-alpine:'$tag'#' deployment.yml | kubectl apply -f -"
   }
 }
