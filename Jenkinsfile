@@ -29,9 +29,10 @@ node {
         try {
           def scannerHome = tool 'scanner';
         } finally {
-          withSonarQubeEnv('SonarQube') {
-          sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
-        }
+            withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
+          }
+		}
       }
     }  
   }
