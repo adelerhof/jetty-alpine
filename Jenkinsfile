@@ -10,20 +10,20 @@ node {
   }
         
   stage ('Parallel Build/Test/SonarQube') {
-    docker.image('maven:3.6.1-jdk-11').inside {
+    docker.image('maven:3.6.1-ibmjava-8-alpine').inside {
   
       parallel Test: {
         try {
 	  sh "mvn test"
           junit 'target/surefire-reports/*.xml'
         } finally {
-          sh 'echo "Test stage completed"'
+          //sh 'echo "Test stage completed"'
         }
       } , Coverage: {
         try {
           cobertura coberturaReportFile: 'target/site/cobertura/coverage.xml'
         } finally {
-          sh 'echo "Coverage stage completed"'
+          //sh 'echo "Coverage stage completed"'
         } 
       }, SonarQube: {
         try {
@@ -32,7 +32,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
 	  }
 	} finally {
-           sh 'echo "SonarQube stage completed"' 
+           //sh 'echo "SonarQube stage completed"' 
 	}
       }
     }  
