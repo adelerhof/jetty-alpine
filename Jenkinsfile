@@ -10,7 +10,7 @@ node {
   }
         
   stage ('Parallel Build/Test/SonarQube') {
-    docker.image('maven:3.6.1-ibmjava-8-alpine').inside {
+    docker.image('maven:3.6.1-alpine').inside {
   
       parallel Test: {
         try {
@@ -27,7 +27,6 @@ node {
         } 
       }, SonarQube: {
         try {
-	  sh "sudo su-"
           def scannerHome = tool 'scanner';
 	  withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
