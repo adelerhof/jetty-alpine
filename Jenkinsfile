@@ -28,11 +28,12 @@ node {
       }, SonarQube: {
         try {
           def scannerHome = tool 'scanner';
-        } finally {
-            withSonarQubeEnv('SonarQube') {
+	  withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
-          }
-		}
+	  }
+	} finally {
+           sh 'echo "SonarQube stage completed"' 
+	}
       }
     }  
   }
