@@ -13,25 +13,26 @@ node {
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn compile"
       
-      parallel Test:
+      parallel Test: {
         try {
           junit 'target/surefire-reports/*.xml'
         } finally {
           sh 'echo "Test stage completed"'
         }
-      parallel Coverage:
+      } , Coverage: {
         try {
           cobertura coberturaReportFile: 'target/site/cobertura/coverage.xml'
         } finally {
           sh 'echo "Coverage stage completed"'
-        }
-      parallel SonarQube:
+        } 
+      }, SonarQube: {
         try {
           def scannerHome = tool 'scanner';
         } finally {
           withSonarQubeEnv('SonarQube') {
           sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
         }
+      }
     }  
   }
 
