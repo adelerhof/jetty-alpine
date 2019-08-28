@@ -11,10 +11,10 @@ node {
         
   stage ('Parallel Build/Test/SonarQube') {
     docker.image('maven:3.6.1-jdk-11').inside {
-      sh "mvn compile"
-      
+  
       parallel Test: {
         try {
+	  sh "mvn test"
           junit 'target/surefire-reports/*.xml'
         } finally {
           sh 'echo "Test stage completed"'
