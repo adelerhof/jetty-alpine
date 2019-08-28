@@ -1,6 +1,6 @@
 node {
   
-  stage('GitHub Check Out) {
+  stage('GitHub Check Out') {
     checkout scm
     sh "git rev-parse --short HEAD > commit-id"
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
@@ -9,7 +9,7 @@ node {
     env.imageName = "${registryHost}${appname}${tag}"
   }
         
-  stage ("Maven Compile/Test/Package") {
+  stage ('Parallel Build/Test/SonarQube') {
     docker.image('maven:3.6.1-jdk-11').inside {
       sh "mvn compile"
       
