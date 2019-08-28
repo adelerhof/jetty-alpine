@@ -10,7 +10,7 @@ node {
   }
         
   stage ('Parallel Build/Test/SonarQube') {
-    docker.image('maven:3.6.1-ibmjava-8-alpine').inside {
+    docker.image('maven:3.6.1-jdk-11').inside {
   
       parallel Test: {
         try {
