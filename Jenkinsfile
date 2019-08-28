@@ -27,7 +27,7 @@ node {
         } 
       }, SonarQube: {
         try {
-	  sh "mkdir sonar"
+	  sh "mkdir sonar/cache"
           def scannerHome = tool 'scanner';
 	  withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rest-java-jetty -Dsonar.sources=. -Dsonar.java.binaries=./target/classes"
