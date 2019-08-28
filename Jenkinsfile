@@ -39,7 +39,7 @@ node {
   }
   
   stage ('Clean') {
-    sh docker rmi -f flask-jetty-alpine:1
+    sh "docker rmi -f flask-jetty-alpine:1"
     sh "docker rmi -f ${imageName}"
   }
 }
