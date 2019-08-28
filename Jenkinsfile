@@ -36,7 +36,7 @@ node {
   }
   
   stage ('Clean') {
-    sh "docker rmi -f jetty-alpine1:"
+    sh "docker rmi -f jetty-alpine:1"
     sh "docker rmi -f ${imageName}"
   }
 }
